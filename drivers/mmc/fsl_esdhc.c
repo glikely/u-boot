@@ -989,7 +989,7 @@ static int fsl_esdhc_probe(struct udevice *dev)
 		priv->non_removable = 0;
 	}
 
-	priv->wp_enable = 1;
+	priv->wp_enable = 0;
 
 	if (IS_ENABLED(CONFIG_CLK)) {
 		/* Assigned clock already set clock */
