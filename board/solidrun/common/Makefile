@@ -16,7 +16,6 @@ ifdef MINIMAL
 obj- := __dummy__.o
 else
 obj-$(CONFIG_VID)		+= vid.o
-obj-$(CONFIG_EMC2301)		+= emc2301.o
 ifdef CONFIG_SECURE_BOOT
 obj-$(CONFIG_CMD_ESBC_VALIDATE) += fsl_validate.o cmd_esbc_validate.o
 endif
