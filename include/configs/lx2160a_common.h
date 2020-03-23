@@ -251,6 +251,7 @@ int select_i2c_ch_pca9547_sec(unsigned char ch);
 	BOOTENV					\
 	"mcmemsize=0x70000000\0"		\
 	XSPI_MC_INIT_CMD				\
+	"nvme_need_init=true\0" \
 	"scan_dev_for_boot_part="		\
 		"part list ${devtype} ${devnum} devplist; "	\
 		"env exists devplist || setenv devplist 1; "	\
