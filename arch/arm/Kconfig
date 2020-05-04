@@ -1195,6 +1195,7 @@ config TARGET_LX2160ACEX7
 	select ARCH_MISC_INIT
 	select ARM64
 	select ARMV8_MULTIENTRY
+	select ARCH_SUPPORT_TFABOOT
 	select BOARD_LATE_INIT
 	help
 	  Support for SolidRun LX2160A based com express type 7 module and

@@ -16,7 +16,7 @@
 #include <fdt_support.h>
 #include <linux/libfdt.h>
 #include <fsl-mc/fsl_mc.h>
-#include <environment.h>
+#include <env_internal.h>
 #include <efi_loader.h>
 #include <asm/arch/mmu.h>
 #include <hwconfig.h>
@@ -26,6 +26,8 @@
 #include <asm/arch/soc.h>
 #include "../../freescale/common/vid.h"
 #include <fsl_immap.h>
+#include <asm/arch-fsl-layerscape/fsl_icid.h>
+#include <asm/gic-v3.h>
 
 #ifdef CONFIG_EMC2301
 #include "../common/emc2301.h"
