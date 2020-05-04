@@ -225,6 +225,16 @@ int select_i2c_ch_pca9547_sec(unsigned char ch);
 	"esbc_validate 0x80680000 ;"		\
 	"fsl_mc start mc 0x80a00000 0x80e00000\0"
 
+#define SD2_MC_INIT_CMD				\
+	"mmc dev 1; mmc read 0x80a00000 0x5000 0x1200;"	\
+	"mmc read 0x80e00000 0x7000 0x800;"	\
+	"env exists secureboot && "		\
+	"mmc read 0x80640000 0x3200 0x20 && "	\
+	"mmc read 0x80680000 0x3400 0x20 && "	\
+	"esbc_validate 0x80640000 && "		\
+	"esbc_validate 0x80680000 ;"		\
+	"fsl_mc start mc 0x80a00000 0x80e00000\0"
+
 #define EXTRA_ENV_SETTINGS			\
 	"hwconfig=fsl_ddr:bank_intlv=auto\0"	\
 	"ramdisk_addr=0x800000\0"		\

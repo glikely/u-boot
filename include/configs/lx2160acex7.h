@@ -46,11 +46,6 @@
 
 #endif
 
-/* EMC2301 */
-#define I2C_MUX_CH_EMC2301	0x01
-#define I2C_EMC2301_ADDR	0x2f
-#define I2C_EMC2301_CMD		0x40
-#define I2C_EMC2301_PWM		0x80
 
 /* EEPROM */
 #undef CONFIG_ID_EEPROM /* Fixme */
@@ -73,7 +68,14 @@
 		"$kernelheader_size && esbc_validate ${kernelheader_addr_r}; "\
 		" bootm $load_addr#$BOARD\0"			\
 	"sd_bootcmd=echo Trying load from sd card..;"		\
-		"mmc dev 0; mmcinfo; mmc read $load_addr "			\
+		"mmcinfo; mmc read $load_addr "			\
+		"$kernel_addr_sd $kernel_size_sd ;"		\
+		"env exists secureboot && mmc read $kernelheader_addr_r "\
+		"$kernelhdr_addr_sd $kernelhdr_size_sd "	\
+		" && esbc_validate ${kernelheader_addr_r};"	\
+		"bootm $load_addr#$BOARD\0"			\
+	"emmc_bootcmd=echo Trying load from emmc card..;"	\
+		"mmc dev 1; mmcinfo; mmc read $load_addr "	\
 		"$kernel_addr_sd $kernel_size_sd ;"		\
 		"env exists secureboot && mmc read $kernelheader_addr_r "\
 		"$kernelhdr_addr_sd $kernelhdr_size_sd "	\
