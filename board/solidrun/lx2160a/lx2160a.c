@@ -358,7 +358,28 @@ int ft_board_setup(void *blob, bd_t *bd)
 	fdt_fsl_mc_fixup_iommu_map_entry(blob);
 	fdt_fixup_board_enet(blob);
 #endif
+	printf ("Releasing fan controller full speed gpio\n");
+	/*
+	 * Set the GPIO to be input; the on-COM pullup will disable the full speed
+	 * signal.
+	 */
+	out_le32(GPIO3_GPDIR_ADDR, (~(1 << 29) &
+		in_le32(GPIO3_GPDIR_ADDR)));
+	return 0;
+}
+#endif
 
+#ifdef CONFIG_CMD_POWEROFF
+int do_poweroff(cmd_tbl_t *cmdtp, int flag, int argc, char * const argv[])
+{
+	printf ("Powering off by setting S5# to low\n");
+	out_le32(GPIO3_GPDAT_ADDR, (~(1 << 24) &
+		in_le32(GPIO3_GPDAT_ADDR)));
+	out_le32(GPIO3_GPDIR_ADDR, (1 << 24 |
+		in_le32(GPIO3_GPDIR_ADDR)));
+	while (1) {}
+
+	/* not reached */
 	return 0;
 }
 #endif
