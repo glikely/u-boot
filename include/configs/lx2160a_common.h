@@ -237,7 +237,8 @@ int select_i2c_ch_pca9547_sec(unsigned char ch);
 
 #define EXTRA_ENV_SETTINGS			\
 	"hwconfig=fsl_ddr:bank_intlv=auto\0"	\
-	"ramdisk_addr=0x800000\0"		\
+	"ramdisk_addr=0x90000000\0"		\
+	"ramdisk_addr_r=0x90000000\0"		\
 	"ramdisk_size=0x2000000\0"		\
 	"fdt_high=0xa0000000\0"			\
 	"initrd_high=0xffffffffffffffff\0"	\
@@ -248,9 +249,9 @@ int select_i2c_ch_pca9547_sec(unsigned char ch);
 	"scripthdraddr=0x80080000\0"		\
 	"fdtheader_addr_r=0x80100000\0"		\
 	"kernelheader_addr_r=0x80200000\0"	\
-	"kernel_addr_r=0x81000000\0"		\
+	"kernel_addr_r=0x81100000\0"		\
 	"kernelheader_size=0x40000\0"		\
-	"fdt_addr_r=0x90000000\0"		\
+	"fdt_addr_r=0x81000000\0"		\
 	"load_addr=0xa0000000\0"		\
 	"kernel_size=0x2800000\0"		\
 	"kernel_addr_sd=0x8000\0"		\
