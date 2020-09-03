@@ -328,9 +328,14 @@ int checkboard(void)
 #ifdef CONFIG_TARGET_LX2160AQDS
 	printf("Board: %s-QDS, ", buf);
 #else
+#ifdef CONFIG_TARGET_LX2160ACEX7
+	printf("Board: %s-CEX7, ", buf);
+#else
 	printf("Board: %s-RDB, ", buf);
 #endif
+#endif
 
+#ifdef CONFIG_FSL_QIXIS
 	sw = QIXIS_READ(arch);
 	printf("Board version: %c, boot from ", (sw & 0xf) - 1 + 'A');
 
@@ -358,6 +363,7 @@ int checkboard(void)
 			break;
 		}
 	}
+#endif
 #ifdef CONFIG_TARGET_LX2160AQDS
 	printf("FPGA: v%d (%s), build %d",
 	       (int)QIXIS_READ(scver), qixis_read_tag(buf),
@@ -384,9 +390,12 @@ int checkboard(void)
 	clock = sw >> 4;
 	printf("Clock1 = %sMHz Clock2 = %sMHz\n", freq[clock], freq[clock]);
 #else
+#ifdef CONFIG_TARGET_LX2160ACEX7
+	puts("SERDES1 Reference: Clock1 = 161.13MHz Clock2 = 100MHz\n");
+#else
 	printf("FPGA: v%d.%d\n", QIXIS_READ(scver), QIXIS_READ(tagdata));
-
 	puts("SERDES1 Reference: Clock1 = 161.13MHz Clock2 = 161.13MHz\n");
+#endif
 	puts("SERDES2 Reference: Clock1 = 100MHz Clock2 = 100MHz\n");
 	puts("SERDES3 Reference: Clock1 = 100MHz Clock2 = 100MHz\n");
 #endif
@@ -744,6 +753,16 @@ int ft_board_setup(void *blob, bd_t *bd)
 #endif
 	fdt_fixup_icid(blob);
 
+#ifdef CONFIG_TARGET_LX2160ACEX7
+	printf ("Releasing fan controller full speed gpio\n");
+	/*
+	 * Set the GPIO to be input; the on-COM pullup will disable the full speed
+	 * signal.
+	 */
+	out_le32(GPIO3_GPDIR_ADDR, (~(1 << 29) &
+		in_le32(GPIO3_GPDIR_ADDR)));
+#endif
+
 	return 0;
 }
 #endif
@@ -761,3 +780,20 @@ void qixis_dump_switch(void)
 		printf("SW%d = (0x%02x)\n", i, QIXIS_READ(cms[1]));
 	}
 }
+
+#ifdef CONFIG_TARGET_LX2160ACEX7
+#ifdef CONFIG_CMD_POWEROFF
+int do_poweroff(cmd_tbl_t *cmdtp, int flag, int argc, char * const argv[])
+{
+	printf ("Powering off by setting S5# to low\n");
+	out_le32(GPIO3_GPDAT_ADDR, (~(1 << 24) &
+		in_le32(GPIO3_GPDAT_ADDR)));
+	out_le32(GPIO3_GPDIR_ADDR, (1 << 24 |
+		in_le32(GPIO3_GPDIR_ADDR)));
+	while (1) {}
+
+	/* not reached */
+	return 0;
+}
+#endif
+#endif
