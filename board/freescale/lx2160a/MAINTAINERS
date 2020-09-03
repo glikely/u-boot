@@ -12,6 +12,13 @@ M:	Udit Agarwal <udit.agarwal@nxp.com>
 S:	Maintained
 F:	configs/lx2160ardb_tfa_SECURE_BOOT_defconfig
 
+LX2160ACEX7 BOARD
+M:	Rabeeh Khoury <rabeeh@solid-run.com>
+S:	Maintained
+F:	include/configs/lx2160acex7.h
+F:	configs/lx2160acex7_tfa_defconfig
+F:	arch/arm/dts/fsl-lx2160a-cex7.dts
+
 LX2160AQDS BOARD
 M:	Pankaj Bansal <pankaj.bansal@nxp.com>
 S:	Maintained

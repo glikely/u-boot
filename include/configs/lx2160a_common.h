@@ -132,9 +132,11 @@
 #define I2C_SFP_EEPROM_ADDR_LEN	1
 
 /* Qixis */
+#ifndef CONFIG_TARGET_LX2160ACEX7
 #define CONFIG_FSL_QIXIS
 #define CONFIG_QIXIS_I2C_ACCESS
 #define CONFIG_SYS_I2C_FPGA_ADDR		0x66
+#endif
 
 /* PCI */
 #ifdef CONFIG_PCI

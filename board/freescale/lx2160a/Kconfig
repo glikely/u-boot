@@ -1,4 +1,4 @@
-if TARGET_LX2160ARDB
+if ARCH_LX2160A
 
 config SYS_BOARD
 	default "lx2160a"
@@ -9,6 +9,7 @@ config SYS_VENDOR
 config SYS_SOC
 	default "fsl-layerscape"
 
+if TARGET_LX2160ARDB
 config SYS_CONFIG_NAME
 	default "lx2160ardb"
 
@@ -20,24 +21,17 @@ config QSFP_EEPROM
          QSFP+ cable eeprom. It can be used when PHYs are
          requiring different initialization based on cable
          type.
+endif
 
-source "board/freescale/common/Kconfig"
+if TARGET_LX2160ACEX7
+config SYS_CONFIG_NAME
+	default "lx2160acex7"
 endif
 
 if TARGET_LX2160AQDS
-
-config SYS_BOARD
-	default "lx2160a"
-
-config SYS_VENDOR
-	default "freescale"
-
-config SYS_SOC
-	default "fsl-layerscape"
-
 config SYS_CONFIG_NAME
 	default "lx2160aqds"
+endif
 
 source "board/freescale/common/Kconfig"
 endif
-
