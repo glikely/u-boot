@@ -1,4 +1,4 @@
-if TARGET_LX2160ARDB
+if ARCH_LX2160A
 
 config SYS_BOARD
 	default "lx2160a"
@@ -10,25 +10,8 @@ config SYS_SOC
 	default "fsl-layerscape"
 
 config SYS_CONFIG_NAME
-	default "lx2160ardb"
+	default "lx2160ardb" if TARGET_LX2160ARDB
+	default "lx2160aqds" if TARGET_LX2160AQDS
 
 source "board/freescale/common/Kconfig"
 endif
-
-if TARGET_LX2160AQDS
-
-config SYS_BOARD
-	default "lx2160a"
-
-config SYS_VENDOR
-	default "freescale"
-
-config SYS_SOC
-	default "fsl-layerscape"
-
-config SYS_CONFIG_NAME
-	default "lx2160aqds"
-
-source "board/freescale/common/Kconfig"
-endif
-
