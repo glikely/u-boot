@@ -10,6 +10,7 @@ config SYS_SOC
 	default "fsl-layerscape"
 
 config SYS_CONFIG_NAME
+	default "lx2160acex7" if TARGET_LX2160ACEX7
 	default "lx2160ardb" if TARGET_LX2160ARDB
 	default "lx2160aqds" if TARGET_LX2160AQDS
 

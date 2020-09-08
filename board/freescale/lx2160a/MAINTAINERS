@@ -1,3 +1,10 @@
+LX2160ACEX7 BOARD
+M:	Rabeeh Khoury <rabeeh@solid-run.com>
+S:	Maintained
+F:	include/configs/lx2160acex7.h
+F:	configs/lx2160acex7_tfa_defconfig
+F:	arch/arm/dts/fsl-lx2160a-cex7.dts
+
 LX2160ARDB BOARD
 M:	Priyanka Jain <priyanka.jain@nxp.com>
 S:	Maintained
