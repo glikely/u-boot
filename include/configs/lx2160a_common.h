@@ -213,7 +213,8 @@ unsigned long get_board_ddr_clk(void);
 
 #define EXTRA_ENV_SETTINGS			\
 	"hwconfig=fsl_ddr:bank_intlv=auto\0"	\
-	"ramdisk_addr=0x800000\0"		\
+	"ramdisk_addr=0x90000000\0"		\
+	"ramdisk_addr_r=0x90000000\0"		\
 	"ramdisk_size=0x2000000\0"		\
 	"fdt_high=0xa0000000\0"			\
 	"initrd_high=0xffffffffffffffff\0"	\
@@ -224,9 +225,9 @@ unsigned long get_board_ddr_clk(void);
 	"scripthdraddr=0x80080000\0"		\
 	"fdtheader_addr_r=0x80100000\0"		\
 	"kernelheader_addr_r=0x80200000\0"	\
-	"kernel_addr_r=0x81000000\0"		\
+	"kernel_addr_r=0x81100000\0"		\
 	"kernelheader_size=0x40000\0"		\
-	"fdt_addr_r=0x90000000\0"		\
+	"fdt_addr_r=0x81000000\0"		\
 	"load_addr=0xa0000000\0"		\
 	"kernel_size=0x2800000\0"		\
 	"kernel_addr_sd=0x8000\0"		\
@@ -237,6 +238,7 @@ unsigned long get_board_ddr_clk(void);
 	BOOTENV					\
 	"mcmemsize=0x70000000\0"		\
 	XSPI_MC_INIT_CMD				\
+	"nvme_need_init=true\0" \
 	"scan_dev_for_boot_part="		\
 		"part list ${devtype} ${devnum} devplist; "	\
 		"env exists devplist || setenv devplist 1; "	\
@@ -269,22 +271,22 @@ unsigned long get_board_ddr_clk(void);
 
 #define SD_BOOTCOMMAND						\
 		"env exists mcinitcmd && mmcinfo; "		\
-		"mmc read 0x80d00000 0x6800 0x800; "		\
+		"mmc read 0x80001000 0x6800 0x1000; "		\
 		"env exists mcinitcmd && env exists secureboot "	\
 		" && mmc read 0x806C0000 0x3600 0x20 "		\
 		"&& esbc_validate 0x806C0000;env exists mcinitcmd "	\
-		"&& fsl_mc lazyapply dpl 0x80d00000;"		\
+		"&& fsl_mc lazyapply dpl 0x80001000;"		\
 		"run distro_bootcmd;run sd_bootcmd;"		\
 		"env exists secureboot && esbc_halt;"
 
 #define SD2_BOOTCOMMAND						\
 		"mmc dev 1; env exists mcinitcmd && mmcinfo; "	\
-		"mmc read 0x80d00000 0x6800 0x800; "		\
+		"mmc read 0x80001000 0x6800 0x1000; "		\
 		"env exists mcinitcmd && env exists secureboot "	\
-		" && mmc read 0x806C0000 0x3600 0x20 "		\
-		"&& esbc_validate 0x806C0000;env exists mcinitcmd "	\
-		"&& fsl_mc lazyapply dpl 0x80d00000;"		\
-		"run distro_bootcmd;run sd2_bootcmd;"		\
+		" && mmc read 0x80780000 0x3C00 0x20 "		\
+		"&& esbc_validate 0x80780000;env exists mcinitcmd "	\
+		"&& fsl_mc lazyapply dpl 0x80001000;"		\
+		"run distro_bootcmd;run emmc_bootcmd;"		\
 		"env exists secureboot && esbc_halt;"
 
 #define BOOT_TARGET_DEVICES(func) \
@@ -292,6 +294,7 @@ unsigned long get_board_ddr_clk(void);
 	func(MMC, mmc, 0) \
 	func(MMC, mmc, 1) \
 	func(SCSI, scsi, 0) \
+	func(NVME, nvme, 0) \
 	func(DHCP, dhcp, na)
 #include <config_distro_bootcmd.h>
 
