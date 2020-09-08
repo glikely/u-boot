@@ -197,8 +197,6 @@ unsigned long get_board_ddr_clk(void);
 /*
  * QIXIS Definitions
  */
-#define CONFIG_FSL_QIXIS
-
 #ifdef CONFIG_FSL_QIXIS
 #define QIXIS_BASE			0x7fb00000
 #define QIXIS_BASE_PHYS			QIXIS_BASE

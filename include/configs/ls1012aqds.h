@@ -16,8 +16,6 @@
 /*
  * QIXIS Definitions
  */
-#define CONFIG_FSL_QIXIS
-
 #ifdef CONFIG_FSL_QIXIS
 #define CONFIG_QIXIS_I2C_ACCESS
 #define CONFIG_SYS_I2C_FPGA_ADDR	0x66

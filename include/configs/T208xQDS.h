@@ -203,7 +203,6 @@ unsigned long get_board_ddr_clk(void);
 #define CONFIG_SYS_FLASH_BANKS_LIST	{CONFIG_SYS_FLASH_BASE_PHYS \
 					+ 0x8000000, CONFIG_SYS_FLASH_BASE_PHYS}
 
-#define CONFIG_FSL_QIXIS	/* use common QIXIS code */
 #define QIXIS_BASE			0xffdf0000
 #define QIXIS_LBMAP_SWITCH		6
 #define QIXIS_LBMAP_MASK		0x0f

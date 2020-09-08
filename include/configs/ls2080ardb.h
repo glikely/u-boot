@@ -241,8 +241,7 @@ unsigned long get_board_sys_clk(void);
 #endif
 #define CONFIG_SYS_LS_MC_BOOT_TIMEOUT_MS 5000
 
-#ifdef CONFIG_TARGET_LS2081ARDB
-#define CONFIG_FSL_QIXIS	/* use common QIXIS code */
+#ifdef CONFIG_FSL_QIXIS
 #define QIXIS_QMAP_MASK			0x07
 #define QIXIS_QMAP_SHIFT		5
 #define QIXIS_LBMAP_DFLTBANK		0x00

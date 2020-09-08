@@ -121,10 +121,6 @@
 
 #define CONFIG_SYS_NAND_BLOCK_SIZE	(128 * 1024)
 
-#ifndef SPL_NO_QIXIS
-#define CONFIG_FSL_QIXIS
-#endif
-
 #define CONFIG_SYS_I2C_FPGA_ADDR	0x66
 #define QIXIS_BRDCFG4_OFFSET            0x54
 #define QIXIS_LBMAP_SWITCH		2

@@ -9,7 +9,6 @@
 /* SPL build */
 #ifdef CONFIG_SPL_BUILD
 #define SPL_NO_BOARDINFO
-#define SPL_NO_QIXIS
 #define SPL_NO_PCI
 #define SPL_NO_ENV
 #define SPL_NO_RTC

@@ -1240,6 +1240,7 @@ config TARGET_LS1088AQDS
 	select BOARD_LATE_INIT
 	select SUPPORT_SPL
 	select FSL_DDR_INTERACTIVE if !SD_BOOT
+	select FSL_QIXIS
 	help
 	  Support for NXP LS1088AQDS platform.
 	  The LS1088A Development System (QDS) is a high-performance
@@ -1289,6 +1290,7 @@ config TARGET_LS2081ARDB
 	select ARMV8_MULTIENTRY
 	select BOARD_LATE_INIT
 	select SUPPORT_SPL
+	select FSL_QIXIS
 	help
 	  Support for Freescale LS2081ARDB platform.
 	  The LS2081A Reference design board (RDB) is a high-performance
@@ -1302,6 +1304,7 @@ config TARGET_LX2160ARDB
 	select ARMV8_MULTIENTRY
 	select ARCH_SUPPORT_TFABOOT
 	select BOARD_LATE_INIT
+	select FSL_QIXIS
 	help
 	  Support for NXP LX2160ARDB platform.
 	  The lx2160ardb (LX2160A Reference design board (RDB)
@@ -1315,6 +1318,7 @@ config TARGET_LX2160AQDS
 	select ARMV8_MULTIENTRY
 	select ARCH_SUPPORT_TFABOOT
 	select BOARD_LATE_INIT
+	select FSL_QIXIS
 	help
 	  Support for NXP LX2160AQDS platform.
 	  The lx2160aqds (LX2160A QorIQ Development System (QDS)
@@ -1368,6 +1372,7 @@ config TARGET_LS1012AQDS
 	select ARM64
 	select ARCH_SUPPORT_TFABOOT
 	select BOARD_LATE_INIT
+	select FSL_QIXIS
 	help
 	  Support for Freescale LS1012AQDS platform.
 	  The LS1012A Development System (QDS) is a high-performance
@@ -1433,6 +1438,7 @@ config TARGET_LS1028AQDS
 	select ARMV8_MULTIENTRY
 	select ARCH_SUPPORT_TFABOOT
 	select BOARD_LATE_INIT
+	select FSL_QIXIS
 	help
 	  Support for Freescale LS1028AQDS platform
 	  The LS1028A Development System (QDS) is a high-performance
@@ -1446,6 +1452,7 @@ config TARGET_LS1028ARDB
 	select ARMV8_MULTIENTRY
 	select ARCH_SUPPORT_TFABOOT
 	select BOARD_LATE_INIT
+	select FSL_QIXIS
 	help
 	  Support for Freescale LS1028ARDB platform
 	  The LS1028A Development System (RDB) is a high-performance
@@ -1461,6 +1468,7 @@ config TARGET_LS1088ARDB
 	select BOARD_LATE_INIT
 	select SUPPORT_SPL
 	select FSL_DDR_INTERACTIVE if !SD_BOOT
+	select FSL_QIXIS if !SPL_BUILD
 	help
 	  Support for NXP LS1088ARDB platform.
 	  The LS1088A Reference design board (RDB) is a high-performance
@@ -1539,6 +1547,7 @@ config TARGET_LS1043AQDS
 	select SUPPORT_SPL
 	select FSL_DDR_INTERACTIVE if !SPL
 	select FSL_DSPI if !SPL_NO_DSPI
+	select FSL_QIXIS
 	select DM_SPI_FLASH if FSL_DSPI
 	imply SCSI
 	imply SCSI_AHCI
@@ -1572,6 +1581,7 @@ config TARGET_LS1046AQDS
 	select FSL_DDR_BIST if !SPL
 	select FSL_DDR_INTERACTIVE  if !SPL
 	select FSL_DDR_INTERACTIVE if !SPL
+	select FSL_QIXIS
 	imply SCSI
 	help
 	  Support for Freescale LS1046AQDS platform.
